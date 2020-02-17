@@ -147,7 +147,7 @@
       }
     },
     components:{
-      HeaderC
+      VHeader
     },
     methods:{
     },

@@ -79,7 +79,7 @@
       }
     },
     components:{
-      HeaderC
+      VHeader
     },
     methods:{
       setColer(status){
