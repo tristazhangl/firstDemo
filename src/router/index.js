@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const home = r => require.ensure([], () => r(require('../page/home/home.vue')), 'home');
+const home = r => require.ensure([], () => r(require('../page/home/home.vue')), 'home');  // r指的是Resolve，Promise的回调函数
 const ReservationDetail = () => import('@/pages/ReservationDetail');
 const ReservationList = () => import('@/pages/ReservationList');
 // 以下两种导入方式不能用，这样会导致所有页面全部一下子加载，影响加载效率
