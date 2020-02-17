@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <header-c title='我的预约信息'></header-c>
+    <v-header title='我的预约信息'></v-header>
     <div class="container-body">
       <div>
           <div class="logo">
@@ -122,7 +122,7 @@
   </div>
 </template>
 <script>
-  import HeaderC from '@/components/test/Header.vue'
+  import VHeader from '@/components/test/Header.vue'
   export default {
     data(){
       return{

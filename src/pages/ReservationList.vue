@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <header-c title='我的预约信息'></header-c>
+    <v-header title='我的预约信息'></v-header>
     <div class="container-body">
         <template v-for="item in items" class="list-item">
-            <reservation-list-item :itemInfo="item" :key="item.id" v-on:press='pressInfoItem(item.id)'></reservation-list-item>
+            <v-reservation-list-item :itemInfo="item" :key="item.id" v-on:press='pressInfoItem(item.id)'></v-reservation-list-item>
         </template>
     </div>
   </div>
 </template>
 <script>
-    import HeaderC from '@/components/test/Header.vue'
-    import ReservationListItem from '@/components/test/ReservationListItem'
+    import VHeader from '@/components/test/Header.vue'
+    import VReservationListItem from '@/components/test/ReservationListItem'
 
   export default {
     data(){
@@ -60,8 +60,8 @@
       }
     },
     components:{
-      HeaderC,
-      ReservationListItem
+      VHeader,
+      VReservationListItem
     },
     methods:{
       setColer(status){
