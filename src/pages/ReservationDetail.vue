@@ -123,49 +123,60 @@
 </template>
 <script>
   import VHeader from '@/components/test/Header.vue'
+  import {mapMutations,mapGetters, mapState} from 'vuex'
   export default {
     data(){
       return{
-        reserveInfo : {
-          projectName : '广州国际金融中心',
-          campanyName : '广州星巴克',
-          title : '总经理',
-          name : '李四',
-          visitedPurpose : '参观',
-          mainWant : '写字楼',
-          remindArea : {
-            width : '21',
-            height : '33'
-          },
-          reserveDateTime : 1581842849,  // 时间戳
-          phone : '13529892882',
-          reseriverInfo : {
-            name : '张三',
-            phone : '18299837721'
-          }
-        }
+        
       }
     },
     components:{
       VHeader
     },
     methods:{
+      ...mapMutations('reservationDetail',['setReserveInfo'])
     },
     computed : {
-      reserveDate : function () {
-        let date = new Date(this.reserveInfo.reserveDateTime * 1000);
-        let y = date.getFullYear();
-        let m = date.getMonth() + 1;
-        let d = date.getDate();
-        return y + '-' + m + '-' + d;
-      },
-      reserveTime : function () {
-        let date = new Date(this.reserveInfo.reserveDateTime * 1000);
-        let h = date.getHours()
-        let m = date.getMinutes();
-        let s = date.getSeconds();
-        return  h+':'+m;
+      ...mapGetters('reservationDetail',{
+        reserveInfo  : 'getReserveInfo',
+      }),
+      ...mapState('reservationDetail',{
+        reserveDate : state => {
+          let date = new Date(state.reserveInfo.reserveDateTime * 1000);
+          let y = date.getFullYear();
+          let m = date.getMonth() + 1;
+          let d = date.getDate();
+          return y + '-' + m + '-' + d;
+        },
+        reserveTime : state => {
+          let date = new Date(state.reserveInfo.reserveDateTime * 1000);
+          let h = date.getHours()
+          let m = date.getMinutes();
+          let s = date.getSeconds();
+          return  h+':'+m;
+        }
+      })
+    },
+    created : function(){
+      let reservaInfo = {
+        projectName : '广州国际金融中心',
+        campanyName : '广州星巴克',
+        title : '总经理',
+        name : '李四',
+        visitedPurpose : '参观',
+        mainWant : '写字楼',
+        remindArea : {
+          width : '21',
+          height : '33'
+        },
+        reserveDateTime : 1581842849,  // 时间戳
+        phone : '13529892882',
+        reseriverInfo : {
+          name : '张三',
+          phone : '18299837721'
+        }
       }
+      this.setReserveInfo(reservaInfo);
     }
   }
 </script>

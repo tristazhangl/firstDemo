@@ -9,18 +9,54 @@
   </div>
 </template>
 <script>
-    import VHeader from '@/components/test/Header.vue'
-    import VReservationListItem from '@/components/test/ReservationListItem'
+  import VHeader from '@/components/test/Header.vue'
+  import VReservationListItem from '@/components/test/ReservationListItem'
+  import {mapState,mapGetters,mapMutations} from 'vuex'
 
   export default {
     data(){
       return{
-        items : [{
-          id : '1',
-          campany : '广州国际金融中心',
-          reservationDate : '2020.02.21',
-          sitType : '写字楼',
-          status : '预约中'
+      }
+    },
+    computed : {
+      ...mapGetters('reservationList',{
+        items : 'getItems'
+      })
+    },
+    components:{
+      VHeader,
+      VReservationListItem
+    },
+    methods:{
+      ...mapMutations('reservationList',['setItems']),
+      setColer(status){
+        let colorValue = '';
+        switch (status) {
+          case '预约中': 
+           colorValue = '#F39241';
+           break;
+          case '预约完成':
+           colorValue = '#A782F4';
+           break;
+          case '已到访':
+           colorValue = '#999999';
+           break;
+        }
+        return {color : colorValue}
+      },
+      pressInfoItem(id) {
+          console.log('press the item which id is '+id);
+          this.$router.push({ name: 'ReservationDetail', params: { itemId: id }})
+      }
+    },
+    created(){
+      let items =  [
+        {
+        id : '1',
+        campany : '广州国际金融中心',
+        reservationDate : '2020.02.21',
+        sitType : '写字楼',
+        status : '预约中'
         },
         {
           id : '2',
@@ -56,36 +92,9 @@
           reservationDate : '2020.02.21',
           sitType : '写字楼',
           status : '已到访'
-        }],
-      }
-    },
-    components:{
-      VHeader,
-      VReservationListItem
-    },
-    methods:{
-      setColer(status){
-        let colorValue = '';
-        switch (status) {
-          case '预约中': 
-           colorValue = '#F39241';
-           break;
-          case '预约完成':
-           colorValue = '#A782F4';
-           break;
-          case '已到访':
-           colorValue = '#999999';
-           break;
         }
-        return {color : colorValue}
-      },
-      pressInfoItem(id) {
-          console.log('press the item which id is '+id);
-          this.$router.push({ name: 'ReservationDetail', params: { itemId: id }})
-      }
-    },
-    created(){
-     // this.getInfo()
+      ];
+      this.setItems(items);
     }
   }
 </script>

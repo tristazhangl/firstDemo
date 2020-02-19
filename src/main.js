@@ -12,7 +12,8 @@ import 'mint-ui/lib/style.css'
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Picker.name, Picker);
 // Picker.name, Picker
-import store from './utils/store.js'; // 引用vueX
+// import store from './utils/store.js'; // 引用vueX
+import store from './store'
 import App from './App.vue'
 Vue.config.productionTip = false;
 Vue.use(VueWechatTitle);
